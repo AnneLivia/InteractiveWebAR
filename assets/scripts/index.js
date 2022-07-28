@@ -17,15 +17,13 @@ linkedinButton.addEventListener('click', () => {
   window.open('https://www.linkedin.com/in/annelivia/', '_blank');
 });
 
-let currentItem = 3;
+let currentItem = 2;
 
 panel.setAttribute('visible', true);
 
-
-
 const showPortfolioItem = (item) => {
   // vai deixar visivel o item atual e invisivel o restante
-  for (let i = 0; i <= 3; i++) {
+  for (let i = 0; i <= 2; i++) {
     document.querySelector('#item' + i).setAttribute('visible', i === item);
   }
 
@@ -42,13 +40,13 @@ const showPortfolioItem = (item) => {
 leftButton.addEventListener('click', () => {
   console.log(currentItem)
   currentItem -= 1;
-  if (currentItem < 0) currentItem = 3;
+  if (currentItem < 0) currentItem = 2;
   showPortfolioItem(currentItem);
 });
 
 rightButton.addEventListener('click', () => {
   currentItem += 1;
-  if (currentItem > 3) currentItem = 0;
+  if (currentItem > 2) currentItem = 0;
   console.log(currentItem)
   showPortfolioItem(currentItem);
 });
