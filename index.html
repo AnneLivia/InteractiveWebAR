@@ -42,7 +42,7 @@
 
         <!-- 3D Models -->
         <a-asset-item id="RobotModel" src="./assets/3DModels/robot/scene.gltf"></a-asset-item>
-        <a-asset-item id="BearModel" src="./assets/3DModels/bear/scene.gltf"></a-asset-item>
+        <a-asset-item id="DeadbeatModel" src="./assets/3DModels/deadbeat/scene.gltf"></a-asset-item>
 
       </a-assets>
       <!-- wasd-controls="" -->
@@ -92,13 +92,13 @@
             </a-video>
           </a-entity>
           <a-entity id="item1" visible="false" scale="0.5 0.5 0.5">
-            <a-gltf-model id="RobotModelContent" rotation="0 0 -0.1" position="-0.00013 -0.41939 -0.013"
+            <a-gltf-model id="RobotModelContent" rotation="0 0 0" position="-0.00013 -0.41939 -0.013"
               scale="0.4 0.4 0.4" src="#RobotModel" animation-mixer="" gltf-model="./assets/3DModels/robot/scene.gltf">
             </a-gltf-model>
           </a-entity>
           <a-entity id="item2" visible="true" scale="0.9 0.9 0.9">
-            <a-gltf-model id="BearModelContent" rotation="" position="-0.02341 -0.12911 0.17831" scale="0.4 0.4 0.4"
-              src="#BearModel" animation-mixer="" gltf-model="./assets/3DModels/bear/scene.gltf">
+            <a-gltf-model id="DeadbeatModelContent" rotation="" position="0.02917 0.41066 0.10678" scale="0.3 0.3 0.3"
+              src="#DeadbeatModel" animation-mixer="" gltf-model="./assets/3DModels/deadbeat/scene.gltf">
             </a-gltf-model>
           </a-entity>
         </a-entity>
