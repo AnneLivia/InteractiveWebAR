@@ -65,24 +65,25 @@
             material=""
             geometry=""
           ></a-plane>-->
+        <a-entity visible="" id="buttons">
+          <a-image id="right-button" class="clickable" src="#icon-right" position="0.486 -0.458 -0.043" height="0.15"
+            width="0.15" animation="property: scale; to: 1.2 1.2 1.2; easing: easeInOutQuad; loop: NaN; dir: alternate"
+            material="" geometry=""></a-image>
 
-        <a-image id="right-button" class="clickable" src="#icon-right" position="0.4152 -0.52645 -0.04302" height="0.15"
-          width="0.15" animation="property: scale; to: 1.2 1.2 1.2; easing: easeInOutQuad; loop: true; dir: alternate"
-          material="" geometry=""></a-image>
+          <a-image id="left-button" class="clickable" src="#icon-left" position="-0.486 -0.458 -0.043" height="0.15"
+            width="0.15" animation="property: scale; to: 1.2 1.2 1.2; easing: easeInOutQuad; loop: true; dir: alternate"
+            material="" geometry=""></a-image>
 
-        <a-image id="left-button" class="clickable" src="#icon-left" position="-0.48631 -0.45837 0.09102" height="0.15"
-          width="0.15" animation="property: scale; to: 1.2 1.2 1.2; easing: easeInOutQuad; loop: true; dir: alternate"
-          material="" geometry=""></a-image>
+          <a-image id="linkedin-button" class="clickable" src="#icon-linkedin" alpha-test="0.5"
+            position="-0.20868 -0.458 -0.043" height="0.15" width="0.15"
+            animation="property: scale; to: 1.2 1.2 1.2; easing: easeInOutQuad; loop: true; dir: alternate" material=""
+            geometry=""></a-image>
 
-        <a-image id="linkedin-button" class="clickable" src="#icon-linkedin" alpha-test="0.5"
-          position="-0.20868 -0.52907 -0.07689" height="0.15" width="0.15"
-          animation="property: scale; to: 1.2 1.2 1.2; easing: easeInOutQuad; loop: true; dir: alternate" material=""
-          geometry=""></a-image>
-
-        <a-image id="github-button" class="clickable" src="#icon-github" position="0.11699 -0.50993 -0.05227"
-          height="0.15" width="0.15"
-          animation="property: scale; to: 1.2 1.2 1.2; easing: easeInOutQuad; loop: true; dir: alternate" material=""
-          geometry=""></a-image>
+          <a-image id="github-button" class="clickable" src="#icon-github" position="0.11699 -0.458 -0.043"
+            height="0.15" width="0.15"
+            animation="property: scale; to: 1.2 1.2 1.2; easing: easeInOutQuad; loop: true; dir: alternate" material=""
+            geometry=""></a-image>
+        </a-entity>
         <!-- Para trocar de conteudo (agrupando entidades dentro de uma entidade)-->
         <a-entity visible="" id="panel">
           <a-entity id="item0" visible="false">
@@ -96,8 +97,8 @@
             </a-gltf-model>
           </a-entity>
           <a-entity id="item2" visible="true" scale="0.9 0.9 0.9">
-            <a-gltf-model id="BearModelContent" rotation="0 0 -0.1" position="-0.02278 -0.20847 0.19942"
-              scale="0.4 0.4 0.4" src="#BearModel" animation-mixer="" gltf-model="./assets/3DModels/bear/scene.gltf">
+            <a-gltf-model id="BearModelContent" rotation="" position="-0.02341 -0.12911 0.17831" scale="0.4 0.4 0.4"
+              src="#BearModel" animation-mixer="" gltf-model="./assets/3DModels/bear/scene.gltf">
             </a-gltf-model>
           </a-entity>
         </a-entity>
