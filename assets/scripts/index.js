@@ -6,6 +6,7 @@ const panel = document.querySelector('#panel');
 const sceneEl = document.querySelector('a-scene');
 
 const video = document.querySelector('#video');
+
 video.pause();
 
 githubButton.addEventListener('click', () => {
@@ -16,13 +17,15 @@ linkedinButton.addEventListener('click', () => {
   window.open('https://www.linkedin.com/in/annelivia/', '_blank');
 });
 
-let currentItem = 4;
+let currentItem = 3;
 
 panel.setAttribute('visible', true);
 
+
+
 const showPortfolioItem = (item) => {
   // vai deixar visivel o item atual e invisivel o restante
-  for (let i = 0; i <= 5; i++) {
+  for (let i = 0; i <= 3; i++) {
     document.querySelector('#item' + i).setAttribute('visible', i === item);
   }
 
@@ -39,20 +42,20 @@ const showPortfolioItem = (item) => {
 leftButton.addEventListener('click', () => {
   console.log(currentItem)
   currentItem -= 1;
-  if (currentItem < 0) currentItem = 5;
+  if (currentItem < 0) currentItem = 3;
   showPortfolioItem(currentItem);
 });
 
 rightButton.addEventListener('click', () => {
   currentItem += 1;
-  if (currentItem > 5) currentItem = 0;
+  if (currentItem > 3) currentItem = 0;
   console.log(currentItem)
   showPortfolioItem(currentItem);
 });
 
 // arReady event triggered when ready
 sceneEl.addEventListener("arReady", (event) => {
-  console.log("MindAR is ready")
+  console.log("MindAR is ready");
 });
 // arError event triggered when something went wrong. Mostly browser compatbility issue
 sceneEl.addEventListener("arError", (event) => {

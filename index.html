@@ -1,175 +1,155 @@
 <html>
-  <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <script src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.0.0/dist/mindar-image.prod.js"></script>
-    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.0.0/dist/mindar-image-aframe.prod.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
-    <script defer src="assets/scripts/index.js"></script>
 
-    <style>
-      body {
-        margin: 0;
-      }
-      .example-container {
-        overflow: hidden;
-        position: absolute;
-        width: 100%;
-        height: 100%;
-      }
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <script src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.0.0/dist/mindar-image.prod.js"></script>
+  <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.0.0/dist/mindar-image-aframe.prod.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
+  <script defer src="assets/scripts/index.js"></script>
 
-      #example-scanning-overlay {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        position: absolute;
-        left: 0;
-        right: 0;
-        top: 0;
-        bottom: 0;
-        background: transparent;
-        z-index: 2;
-      }
-      @media (min-aspect-ratio: 1/1) {
-        #example-scanning-overlay .inner {
-          width: 50vh;
-          height: 50vh;
-        }
-      }
-      @media (max-aspect-ratio: 1/1) {
-        #example-scanning-overlay .inner {
-          width: 80vw;
-          height: 80vw;
-        }
-      }
+  <style>
+    body {
+      margin: 0;
+    }
 
+    .example-container {
+      overflow: hidden;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+    }
+
+    #example-scanning-overlay {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      background: transparent;
+      z-index: 2;
+    }
+
+    @media (min-aspect-ratio: 1/1) {
       #example-scanning-overlay .inner {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        position: relative;
+        width: 50vh;
+        height: 50vh;
+      }
+    }
 
-        background: linear-gradient(to right, white 10px, transparent 10px) 0 0,
-          linear-gradient(to right, white 10px, transparent 10px) 0 100%,
-          linear-gradient(to left, white 10px, transparent 10px) 100% 0,
-          linear-gradient(to left, white 10px, transparent 10px) 100% 100%,
-          linear-gradient(to bottom, white 10px, transparent 10px) 0 0,
-          linear-gradient(to bottom, white 10px, transparent 10px) 100% 0,
-          linear-gradient(to top, white 10px, transparent 10px) 0 100%,
-          linear-gradient(to top, white 10px, transparent 10px) 100% 100%;
-        background-repeat: no-repeat;
-        background-size: 40px 40px;
+    @media (max-aspect-ratio: 1/1) {
+      #example-scanning-overlay .inner {
+        width: 80vw;
+        height: 80vw;
+      }
+    }
+
+    #example-scanning-overlay .inner {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+
+      background: linear-gradient(to right, white 10px, transparent 10px) 0 0,
+        linear-gradient(to right, white 10px, transparent 10px) 0 100%,
+        linear-gradient(to left, white 10px, transparent 10px) 100% 0,
+        linear-gradient(to left, white 10px, transparent 10px) 100% 100%,
+        linear-gradient(to bottom, white 10px, transparent 10px) 0 0,
+        linear-gradient(to bottom, white 10px, transparent 10px) 100% 0,
+        linear-gradient(to top, white 10px, transparent 10px) 0 100%,
+        linear-gradient(to top, white 10px, transparent 10px) 100% 100%;
+      background-repeat: no-repeat;
+      background-size: 40px 40px;
+    }
+
+    #example-scanning-overlay.hidden {
+      display: none;
+    }
+
+    #example-scanning-overlay img {
+      opacity: 0.6;
+      width: 90%;
+      align-self: center;
+    }
+
+    #example-scanning-overlay .inner .scanline {
+      position: absolute;
+      width: 100%;
+      height: 10px;
+      background: white;
+      animation: move 2s linear infinite;
+    }
+
+    @keyframes move {
+
+      0%,
+      100% {
+        top: 0%;
       }
 
-      #example-scanning-overlay.hidden {
-        display: none;
+      50% {
+        top: calc(100% - 10px);
       }
+    }
+  </style>
+</head>
 
-      #example-scanning-overlay img {
-        opacity: 0.6;
-        width: 90%;
-        align-self: center;
-      }
-
-      #example-scanning-overlay .inner .scanline {
-        position: absolute;
-        width: 100%;
-        height: 10px;
-        background: white;
-        animation: move 2s linear infinite;
-      }
-      @keyframes move {
-        0%,
-        100% {
-          top: 0%;
-        }
-        50% {
-          top: calc(100% - 10px);
-        }
-      }
-    </style>
-  </head>
-  <body>
-    <div class="example-container">
-      <!-- Image de example-->
-      <div id="example-scanning-overlay" class="hidden">
-        <div class="inner">
-          <img src="./assets/images/nylon.jpg" />
-          <div class="scanline"></div>
-        </div>
+<body>
+  <div class="example-container">
+    <!-- Image de example-->
+    <div id="example-scanning-overlay" class="hidden">
+      <div class="inner">
+        <img src="./assets/images/nylon.jpg" />
+        <div class="scanline"></div>
       </div>
+    </div>
 
-      <a-scene
-        mindar-image="imageTargetSrc: assets/targets/nylon.mind; uiScanning: #example-scanning-overlay"
-        color-space="sRGB"
-        renderer="colorManagement: true, physicallyCorrectLights"
-        vr-mode-ui="enabled: false"
-        device-orientation-permission-ui="enabled: false"
-        inspector=""
-        keyboard-shortcuts=""
-        screenshot=""
-        aframe-inspector-removed-embedded="undefined"
-      >
-        <a-assets>
-          <!-- Icones left e right -->
-          <img id="icon-left" src="./assets/images/left.png" />
-          <img id="icon-right" src="./assets/images/right.png" />
-          <!-- Icones rede social -->
-          <img id="icon-github" src="./assets/images/github.png" />
-          <img id="icon-linkedin" src="./assets/images/linkedin.png" />
-          <!-- Image de exemplo -->
-          <img id="card" src="./assets/images/nylon.jpg" />
+    <a-scene mindar-image="imageTargetSrc: assets/targets/nylon.mind; uiScanning: #example-scanning-overlay"
+      color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights" vr-mode-ui="enabled: false"
+      device-orientation-permission-ui="enabled: false" inspector="" keyboard-shortcuts="" screenshot=""
+      aframe-inspector-removed-embedded="undefined">
+      <a-assets>
+        <!-- Icones left e right -->
+        <img id="icon-left" src="./assets/images/left.png" />
+        <img id="icon-right" src="./assets/images/right.png" />
+        <!-- Icones rede social -->
+        <img id="icon-github" src="./assets/images/github.png" />
+        <img id="icon-linkedin" src="./assets/images/linkedin.png" />
+        <!-- Image de exemplo -->
+        <img id="card" src="./assets/images/nylon.jpg" />
 
-          <video
-            id="video"
-            autoplay="false"
-            loop="true"
-            src="./assets/video/videoplayback.mp4"
-            playsinline=""
-            webkit-playsinline=""
-          ></video>
+        <video id="video" autoplay="false" loop="true" src="./assets/video/videoplayback.mp4" playsinline=""
+          webkit-playsinline=""></video>
 
-          <!-- 3D Models -->
-          <a-asset-item
-            id="RobotModel"
-            src="./assets/3DModels/robot/scene.gltf"
-          ></a-asset-item>
-
+        <!-- 3D Models -->
+        <a-asset-item id="RobotModel" src="./assets/3DModels/robot/scene.gltf"></a-asset-item>
+        <!--
           <a-asset-item
             id="MedievalModel"
             src="./assets/3DModels/medieval/scene.gltf"
-          ></a-asset-item>
+          ></a-asset-item>-->
 
-          <a-asset-item
-            id="PlaneModel"
-            src="./assets/3DModels/plane/scene.gltf"
-          ></a-asset-item>
+        <a-asset-item id="PlaneModel" src="./assets/3DModels/plane/scene.gltf"></a-asset-item>
 
-          <a-asset-item
-            id="BearModel"
-            src="./assets/3DModels/bear/scene.gltf"
-          ></a-asset-item>
-
+        <a-asset-item id="BearModel" src="./assets/3DModels/bear/scene.gltf"></a-asset-item>
+        <!--
           <a-asset-item
             id="#DogModel"
-            src="./assets/3DModels/dog/scene.gltf"
-          ></a-asset-item>
-        </a-assets>
-        <!-- wasd-controls="" -->
-        <a-camera
-          position="0 0 0"
-          look-controls="enabled: false"
-          cursor="rayOrigin: mouse"
-          raycaster="far: 10000; objects: .clickable; direction: 0.19234261184056717 0.3117081738945659 -0.93050649325927; origin: 0 1.6 2; useWorldCoordinates: true"
-          camera=""
-          rotation=""
-          data-aframe-inspector-original-camera=""
-        >
-        </a-camera>
+            src="./assets/3DModels/dog/scene.gltf"-->
+        ></a-asset-item>
+      </a-assets>
+      <!-- wasd-controls="" -->
+      <a-camera visible="false" position="0 0 0" look-controls="enabled: false" cursor="rayOrigin: mouse"
+        raycaster="far: 10000; objects: .clickable; direction: 0.19234261184056717 0.3117081738945659 -0.93050649325927; origin: 0 1.6 2; useWorldCoordinates: true"
+        camera="" rotation="" data-aframe-inspector-original-camera="">
+      </a-camera>
 
-        <a-entity id="the-target" mindar-image-target="">
-          <a-plane
+      <a-entity id="the-target" mindar-image-target="">
+        <!-- <a-plane
             src="#card"
             position="-0.04833 -0.04121 -0.37684"
             height="0.552"
@@ -177,112 +157,46 @@
             rotation=""
             material=""
             geometry=""
-          ></a-plane>
+          ></a-plane>-->
 
-          <a-image
-            id="left-button"
-            class="clickable"
-            src="#icon-left"
-            position="-0.80538 0.00146 0.07086"
-            height="0.15"
-            width="0.15"
-            animation="property: scale; to: 1.2 1.2 1.2; easing: easeInOutQuad; loop: NaN; dir: alternate"
-            material=""
-            geometry=""
-          ></a-image>
+        <a-image id="left-button" class="clickable" src="#icon-left" position="-0.61572 -0.39147 0.10848" height="0.15"
+          width="0.15" animation="property: scale; to: 1.2 1.2 1.2; easing: easeInOutQuad; loop: NaN; dir: alternate"
+          material="" geometry=""></a-image>
 
-          <a-image
-            id="linkedin-button"
-            class="clickable"
-            src="#icon-linkedin"
-            alpha-test="0.5"
-            position="-0.29059 -0.52612 -0.06637"
-            height="0.15"
-            width="0.15"
-            animation="property: scale; to: 1.2 1.2 1.2; easing: easeInOutQuad; loop: true; dir: alternate"
-            material=""
-            geometry=""
-          ></a-image>
+        <a-image id="linkedin-button" class="clickable" src="#icon-linkedin" alpha-test="0.5"
+          position="-0.29059 -0.52612 -0.06637" height="0.15" width="0.15"
+          animation="property: scale; to: 1.2 1.2 1.2; easing: easeInOutQuad; loop: true; dir: alternate" material=""
+          geometry=""></a-image>
 
-          <a-image
-            id="github-button"
-            class="clickable"
-            src="#icon-github"
-            position="0.22179 -0.51376 -0.06616"
-            height="0.15"
-            width="0.15"
-            animation="property: scale; to: 1.2 1.2 1.2; easing: easeInOutQuad; loop: true; dir: alternate"
-            material=""
-            geometry=""
-          ></a-image>
+        <a-image id="github-button" class="clickable" src="#icon-github" position="0.22179 -0.51376 -0.06616"
+          height="0.15" width="0.15"
+          animation="property: scale; to: 1.2 1.2 1.2; easing: easeInOutQuad; loop: true; dir: alternate" material=""
+          geometry=""></a-image>
 
-          <a-image
-            id="right-button"
-            class="clickable"
-            src="#icon-right"
-            position="0.77049 -0.03352 -0.18476"
-            height="0.15"
-            width="0.15"
-            animation="property: scale; to: 1.2 1.2 1.2; easing: easeInOutQuad; loop: true; dir: alternate"
-            material=""
-            geometry=""
-          ></a-image>
+        <a-image id="right-button" class="clickable" src="#icon-right" position="0.61737 -0.41062 -0.0853" height="0.15"
+          width="0.15" animation="property: scale; to: 1.2 1.2 1.2; easing: easeInOutQuad; loop: true; dir: alternate"
+          material="" geometry=""></a-image>
 
-          <a-entity visible="" id="panel">
-            <a-entity id="item0">
-              <a-video
-                id="anchor-video"
-                visible="false"
-                src="#video"
-                width="1"
-                height="0.552"
-              ></a-video>
-            </a-entity>
-            <a-entity id="item1" visible="false" scale="0.5 0.5 0.5">
-              <a-gltf-model
-                id="RobotModelContent"
-                rotation="0 0 -0.1"
-                position="0 -0.5 0"
-                scale="0.4 0.4 0.4"
-                src="#RobotModel"
-                animation-mixer=""
-                gltf-model="./assets/3DModels/robot/scene.gltf"
-              ></a-gltf-model>
-            </a-entity>
-            <a-entity id="item2" visible="false" scale="2.5 1.5 2.5">
-              <a-gltf-model
-                id="MedievalModelContent"
-                rotation=""
-                position="0.0041 0.02529 0.23693"
-                scale="0.004 0.004 0.004"
-                src="#MedievalModel"
-                animation-mixer=""
-                gltf-model="./assets/3DModels/medieval/scene.gltf"
-              ></a-gltf-model>
-            </a-entity>
-            <a-entity id="item3" visible="false">
-              <a-gltf-model
-                id="PlaneModelContent"
-                rotation="0 0 -0.10"
-                position="0 -0.5 0"
-                scale="0.4 0.4 0.4"
-                src="#PlaneModel"
-                animation-mixer
-              ></a-gltf-model>
-            </a-entity>
-            <a-entity id="item4" visible="true">
-              <a-gltf-model
-                id="BearModelContent"
-                rotation="0 0 -0.1"
-                position="0 -0.5 0"
-                scale="0.4 0.4 0.4"
-                src="#BearModel"
-                animation-mixer=""
-                gltf-model="./assets/3DModels/bear/scene.gltf"
-              ></a-gltf-model>
-            </a-entity>
-            <a-entity
-              id="item5"
+        <a-entity visible="" id="panel">
+          <a-entity id="item0">
+            <a-video id="anchor-video" visible="false" src="#video" width="1" height="0.552"></a-video>
+          </a-entity>
+          <a-entity id="item1" visible="false" scale="0.5 0.5 0.5">
+            <a-gltf-model id="RobotModelContent" rotation="0 0 -0.1" position="0 -0.5 0" scale="0.4 0.4 0.4"
+              src="#RobotModel" animation-mixer="" gltf-model="./assets/3DModels/robot/scene.gltf"></a-gltf-model>
+          </a-entity>
+
+          <a-entity id="item2" visible="false">
+            <a-gltf-model id="PlaneModelContent" rotation="0 0 -0.1" position="-0.29918 -0.01867 -1.35192"
+              scale="1.2 1.2 1.2" src="#PlaneModel" animation-mixer="" gltf-model="./assets/3DModels/plane/scene.gltf">
+            </a-gltf-model>
+          </a-entity>
+          <a-entity id="item3" visible="true">
+            <a-gltf-model id="BearModelContent" rotation="0 0 -0.1" position="0 -0.5 0" scale="0.4 0.4 0.4"
+              src="#BearModel" animation-mixer="" gltf-model="./assets/3DModels/bear/scene.gltf"></a-gltf-model>
+          </a-entity>
+          <!-- <a-entity
+              id="item4"
               visible="false"
               scale="2.5 2.5 2.5"
               position="-0.01265 1.04117 -0.17123"
@@ -296,11 +210,12 @@
                 animation-mixer=""
                 gltf-model="./assets/3DModels/dog/scene.gltf"
               ></a-gltf-model>
-            </a-entity>
-          </a-entity>
+            </a-entity>-->
         </a-entity>
-        <div class="a-loader-title" style="display: none"></div
-      ></a-scene>
-    </div>
-  </body>
+      </a-entity>
+      <div class="a-loader-title" style="display: none"></div>
+    </a-scene>
+  </div>
+</body>
+
 </html>
