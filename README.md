@@ -2,6 +2,12 @@
 
 Interactive Web AR app implemented using [Mind AR](https://hiukim.github.io/mind-ar-js-doc/) and [A-Frame](https://aframe.io/)
 
+## Video Demonstration 
+
+Go to https://interactive-web-ar.vercel.app/ to view it.
+
+https://user-images.githubusercontent.com/31932673/181804752-3ac76b7e-e4f5-4b05-ab74-53ecdaa8111a.mp4
+
 ## Assets
 
 ### 3D Models
