@@ -25,7 +25,7 @@ https://user-images.githubusercontent.com/31932673/181804752-3ac76b7e-e4f5-4b05-
 The target was created using the app Adobe Express: Graphic Design
 
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/31932673/181661882-49201bf7-844a-4768-962d-26fc4f8b660d.png" width=35%/>
+  <img src="https://user-images.githubusercontent.com/31932673/183983185-c64389e7-4c29-4a8f-b723-160397bdbc8d.png" width=35%/>
 </p>
 
 ### Icones
