@@ -88,3 +88,11 @@ target.addEventListener("targetLost", event => {
  
   console.log("lost")
 });
+
+/*
+window.addEventListener("orientationchange", function() {
+  // Announce the new orientation number
+  if(window.orientation === 90 || this.window.orientation === 0) {
+    document.location.reload();
+  }
+}, false);*/
